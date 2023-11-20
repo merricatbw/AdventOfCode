@@ -1,6 +1,7 @@
 /*
   This one kind of got away from me... -merricat
 */
+
 package main
 
 import (
@@ -28,7 +29,6 @@ func playRound(hands string) (playerScore, opponentScore int) {
   playerHand   := decryptHand(splitHands[1])
   opponentHand := decryptHand(splitHands[0])
 
-
   switch playerHand {
   case rockString:
     switch opponentHand {
@@ -42,6 +42,7 @@ func playRound(hands string) (playerScore, opponentScore int) {
         playerScore = calculateScore(playerHand, winString)
         opponentScore = calculateScore(opponentHand, loseString)
     }
+
   case paperString:
     switch opponentHand {
       case paperString:
@@ -54,6 +55,7 @@ func playRound(hands string) (playerScore, opponentScore int) {
         playerScore = calculateScore(playerHand, winString)
         opponentScore = calculateScore(opponentHand, loseString)
     }
+
   case scissorString:
     switch opponentHand {
       case scissorString:
@@ -73,11 +75,12 @@ func playRound(hands string) (playerScore, opponentScore int) {
 
 func calculateScore(hand string, outcome string) (score int) {
   handScore := make(map[string]int)
+  outcomeScore := make(map[string]int)
+
   handScore[rockString]    = 1
   handScore[paperString]   = 2
   handScore[scissorString] = 3
 
-  outcomeScore := make(map[string]int)
   outcomeScore[winString]  = 6
   outcomeScore[drawString] = 3
   outcomeScore[loseString] = 0
@@ -156,7 +159,7 @@ func decryptHand(hand string) (decrypted string) {
   return
 }
 
-func main() { 
+func main() {
   data := helpers.GetInput("input")
   totalPlayerScore1 := 0
   totalPlayerScore2 := 0
